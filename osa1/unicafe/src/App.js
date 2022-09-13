@@ -21,8 +21,17 @@ const Display = (props) => {
   <p><Category text='good' value={props.good} /></p>
   <p><Category text='neutral' value={props.neutral} /></p>
   <p><Category text='bad' value={props.bad} /></p>
+  <p><Category text='all' value={props.sum} /></p>
+  <p><Category text='avegage' value={props.average} /></p>
+  <p><Category text='positive' value={props.positive} /></p>
   </>
   )
+}
+
+const average = (good, neutral, bad) => {
+  const weight = good * 1 + bad * -1
+  const avg = weight / (good + neutral + bad)
+  return avg
 }
 
 const App = () => {
@@ -32,6 +41,9 @@ const App = () => {
   const [bad, setBad] = useState(0)
   const title = "give feedback"
   const statistics = "statistics"
+  const sum = good + neutral + bad
+  const avg = average(good, neutral, bad)
+  const positive = good / (good + neutral + bad) + '%'
 
   return (
     <div>
@@ -40,7 +52,7 @@ const App = () => {
       <Button handleClick={() => setNeutral(neutral + 1)} text='neutral' />
       <Button handleClick={() => setBad(bad + 1)} text='bad' />
       <Header title={statistics} />
-      <Display good={good} neutral={neutral} bad={bad} />
+      <Display good={good} neutral={neutral} bad={bad} sum={sum} average={avg} positive={positive} />
     </div>
   )
 }

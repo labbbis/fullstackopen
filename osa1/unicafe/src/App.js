@@ -22,7 +22,7 @@ const Display = (props) => {
   <p><Category text='neutral' value={props.neutral} /></p>
   <p><Category text='bad' value={props.bad} /></p>
   <p><Category text='all' value={props.sum} /></p>
-  <p><Category text='avegage' value={props.average} /></p>
+  <p><Category text='average' value={props.average} /></p>
   <p><Category text='positive' value={props.positive} /></p>
   </>
   )
@@ -43,7 +43,7 @@ const App = () => {
   const statistics = "statistics"
   const sum = good + neutral + bad
   const avg = average(good, neutral, bad)
-  const positive = good / (good + neutral + bad) + '%'
+  const positive = (good / (good + neutral + bad)) * 100 + '%'
 
   return (
     <div>
